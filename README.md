@@ -53,7 +53,7 @@ CollegeSpace is a web application designed to help students collaborate, share r
 
 ### Running the App
 
-- To start the main frontend:
+- To start the App:
   ```sh
   npm start
   ```
