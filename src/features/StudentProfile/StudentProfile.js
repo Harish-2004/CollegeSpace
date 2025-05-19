@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './StudentProfile.css';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const StudentProfile = () => {
   const [studentData, setStudentData] = useState({
@@ -53,7 +54,7 @@ const StudentProfile = () => {
     // Fetch student data from backend
     const fetchStudentData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/studentProfile');
+        const response = await axios.get(`${API_BASE_URL}/studentProfile`);
         setStudentData(response.data);
       } catch (error) {
         console.error('Error fetching student data:', error);
@@ -66,7 +67,7 @@ const StudentProfile = () => {
   const handleDispensarySubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/dispensaryRequest', {
+      const response = await axios.post(`${API_BASE_URL}/dispensaryRequest`, {
         ...dispensaryRequest,
         studentId: studentData._id,
         studentName: studentData.name

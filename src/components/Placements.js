@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import StudentCard from './StudentCard';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 export default function Placements(){
     const [students, setStudents] = useState([]);
     useEffect(()=> {
-      axios.get('http://localhost:5001/load')
+      axios.get(`${API_BASE_URL}/load`)
         .then(response => {
          const responseData = response.data;
          setStudents(responseData)

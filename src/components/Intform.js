@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './InterviewForm.css'; 
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
+
 export default function Intform()
 {const navigate=useNavigate();
   const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ const handleChange = (e) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const respons = await fetch("http://localhost:5001/createInt", {
+    const respons = await fetch(`${API_BASE_URL}/createInt`, {
       method: 'POST',
       headers:
       {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function Signup() {
     password: '',
     email: '',
   });
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,9 +25,10 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
   
     try {
-      const response = await fetch("http://localhost:5001/createUser", {
+      const response = await fetch(`${API_BASE_URL}/createUser`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -40,23 +43,28 @@ export default function Signup() {
         })
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
       
       if (data.success) {
         alert('User created successfully!');
         navigate('/Login');
       } else {
-        alert('Failed to create user. Please try again.');
+        setError(data.error || 'Failed to create user. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      setError('Unable to connect to the server. Please make sure the backend server is running.');
     }
   };
 
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Sign Up</h2>
+      {error && <div style={styles.error}>{error}</div>}
       <form style={styles.form} onSubmit={handleSubmit}>
         <label style={styles.label}>Name:</label>
         <input
@@ -160,4 +168,9 @@ const styles = {
     borderRadius: '3px',
     border: 'none',
   },
+  error: {
+    color: 'red',
+    marginBottom: '10px',
+    textAlign: 'center'
+  }
 };

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import InterviewCard from './components/InterviewCard';
 import './styles/Interview.css';
+import { API_BASE_URL } from '../../config';
 
 export default function Interview() {
   const [students, setStudents] = useState([]);
@@ -16,7 +17,7 @@ export default function Interview() {
     const fetchInterviews = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5001/interview');
+        const response = await axios.get(`${API_BASE_URL}/interview`);
         if (response.data && Array.isArray(response.data)) {
           setStudents(response.data);
         } else {

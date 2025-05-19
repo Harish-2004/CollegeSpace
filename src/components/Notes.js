@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 export default function Notes() {
   const [d, setD] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/note')
+    axios.get(`${API_BASE_URL}/note`)
       .then(response => {
         const td = response.data;
         setD(td);
@@ -18,7 +19,7 @@ export default function Notes() {
   }, []);
   
   return (
-    <form action="http://localhost:5001/upload" method="POST" encType="multipart/form-data">
+    <form action={`${API_BASE_URL}/upload`} method="POST" encType="multipart/form-data">
       <input type="text" id="title" name="title" />
       <input type="file" name="pdf" accept=".pdf" required />
       <button type="submit">Upload</button>
