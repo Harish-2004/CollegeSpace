@@ -14,8 +14,8 @@ CollegeSpace is a web application designed to help students collaborate, share r
 
 - **Frontend:** React.js, CSS
 - **Backend:** Node.js, Express.js
-- **Database:** (Add your DB here, e.g., MongoDB)
-- **Other:** Socket.io (for chat), REST APIs
+- **Database:** MongoDB
+- **Chat:** Socket.io (for chat), REST APIs
 
 ## Getting Started
 
