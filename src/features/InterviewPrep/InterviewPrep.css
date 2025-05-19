@@ -1,0 +1,125 @@
+.interview-prep-container {
+  padding: 2rem;
+  margin: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.interview-prep-container h2 {
+  color: #1a202c;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.company-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.company-box {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #e2e8f0;
+}
+
+.company-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.company-box h3 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #4299e1;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.prep-content {
+  margin-bottom: 1.5rem;
+}
+
+.prep-content h4 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.prep-content ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prep-content li {
+  color: #4a5568;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.prep-content li:before {
+  content: "•";
+  color: #4299e1;
+  position: absolute;
+  left: 0;
+  font-size: 1.25rem;
+}
+
+.resources {
+  background-color: #ebf8ff;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #bee3f8;
+}
+
+.resources h5 {
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.resources a {
+  display: block;
+  color: #3182ce;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.resources a:hover {
+  color: #2c5282;
+  background-color: #bee3f8;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .interview-prep-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .company-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .company-box {
+    padding: 1.25rem;
+  }
+} 
