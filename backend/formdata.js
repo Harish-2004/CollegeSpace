@@ -7,10 +7,18 @@ const jsonData = JSON.parse(rawData);
 console.log(jsonData)
 const app = express();
 const port = 5002;
+
+// Updated Mongoose connection with proper error handling
 mongoose.connect('mongodb://localhost:27017/collegedb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch((err) => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1);
 });
+
 const YourSchema = new mongoose.Schema({
   timeStamp:{type:String},
   answer:{type:String},

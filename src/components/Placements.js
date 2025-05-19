@@ -4,17 +4,17 @@ import axios from 'axios';
 
 export default function Placements(){
     const [students, setStudents] = useState([]);
-    useEffect(()=>
-    {axios.get('http://localhost:5001/load')
-      .then(response => {
-       const responseData = response.data;
-       setStudents(responseData)
-        console.log(responseData);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    })
+    useEffect(()=> {
+      axios.get('http://localhost:5001/load')
+        .then(response => {
+         const responseData = response.data;
+         setStudents(responseData)
+          console.log(responseData);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }, []);
 return (<div>
       <h1>Student Cards</h1>
 
