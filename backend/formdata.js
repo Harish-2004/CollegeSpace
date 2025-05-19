@@ -9,7 +9,7 @@ const app = express();
 const port = 5002;
 
 // Updated Mongoose connection with proper error handling
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://person:adminharish@cluster0.eukwcus.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
@@ -44,5 +44,5 @@ app.get('/sync-data', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://${MONGODB_URI}:${port}`);
 });
