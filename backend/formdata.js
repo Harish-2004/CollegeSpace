@@ -9,7 +9,8 @@ const app = express();
 const port = 5002;
 
 // Updated Mongoose connection with proper error handling
-mongoose.connect('mongodb://localhost:27017/collegedb', {
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://person:adminharish@cluster0.eukwcus.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(MONGODB_URI, {
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
 })
