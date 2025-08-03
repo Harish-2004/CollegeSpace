@@ -1,0 +1,6 @@
+crewai
+pymongo
+jinja2
+python-dotenv
+requests
+typing-extensions

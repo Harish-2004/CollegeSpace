@@ -1,0 +1,24 @@
+take the data from the database 
+and do the project using agents and LLMs not to do with inputs it should be done to integrate to a MERN stack project
+ where it should be added as a feature to help to build a resume based on the job profile that helps to the user  
+ to make the resume based on the job profile so make it as an agentic ai project to implement this
+
+
+ #Issues
+ 1.Tried to solve using local models using Ollama faced the issue of timeout issue and also it is taking too long time to responed and work in it
+ 2.I have taken a approach of using Gemini API which is complex to approach to enable api of
+  vertex api and gemini api from google studio but still it didnt work well there is some issue with connection logic 
+3.Then i want to come with the last approach using the Hugging Face inference endpoints which makes it easy to use and fast
+ the only con in this is it will work free upto a certain limit after that it goes to pricing 
+ i want to make it free and easy to deploy 
+
+ # I take the decision of using with the different models using the chatgpt 
+    asking a model which is the best model to use
+    also which always get be remebered in ai asking a neural network to build the neural network
+
+
+# the Next is to give the resume in the format of pdf and to get some interface to it 
+and also if possible integrate with CREWAI
+
+
+
