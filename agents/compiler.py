@@ -81,5 +81,5 @@ def compile_multiple_documents(latex_files: list, output_dir: str = ".") -> dict
                 "success": False,
                 "error": "LaTeX file not found"
             }
-    
+    #print(results)
     return results 

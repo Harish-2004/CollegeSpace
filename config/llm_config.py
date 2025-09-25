@@ -1,6 +1,7 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from crewai import LLM
-
 def get_huggingface_deepseek_llm():
     """
     Configure LLM using Hugging Face router with DeepSeek-V3-0324 - EXCELLENT for resume building.
@@ -72,7 +73,7 @@ def get_llm_config():
     Prioritizes Hugging Face with DeepSeek-V3, then other free options.
     """
     print("🔍 Looking for available LLM options...")
-    
+    print(os.getenv("HUGGINGFACE_API_KEY"))
     # 1. Try Hugging Face with DeepSeek-V3 (EXCELLENT for resume building)
     if os.getenv("HUGGINGFACE_API_KEY"):
         try:

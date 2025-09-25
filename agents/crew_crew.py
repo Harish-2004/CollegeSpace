@@ -32,7 +32,8 @@ resume_crew = Crew(
     # MCP Protocol Configuration
     mcp_server_params=MCP_SERVER_CONFIG,  # Enables MCP protocol
     # Tool sharing via MCP
-    tools=MCP_TOOLS  # Agents can share tools via MCP
+    tools=MCP_TOOLS , # Agents can share tools via MCP
+    output_format="json"
 )
 
 # Alternative crew for skill-focused analysis with MCP
@@ -41,7 +42,8 @@ skill_analysis_crew = Crew(
     tasks=[database_task, analyze_skill_gaps_task, analyze_profile_task],
     process=Process.sequential,
     verbose=True,
-    mcp_server_params=MCP_SERVER_CONFIG
+    mcp_server_params=MCP_SERVER_CONFIG,
+    output_format="json"
 )
 
 # Alternative crew for ATS optimization only with MCP
@@ -50,5 +52,15 @@ ats_optimization_crew = Crew(
     tasks=[optimize_ats_task, write_resume_task],
     process=Process.sequential,
     verbose=True,
-    mcp_server_params=MCP_SERVER_CONFIG
+    mcp_server_params=MCP_SERVER_CONFIG,
+    output_format="json"
 ) 
+
+cover_letter_crew = Crew(
+    agents=[database_agent, cover_letter_generator],
+    tasks=[database_task, generate_cover_letter_task],
+    process=Process.sequential,
+    verbose=True,
+    mcp_server_params=MCP_SERVER_CONFIG,
+    output_format="json"
+)   

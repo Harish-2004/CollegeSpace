@@ -1,7 +1,7 @@
 from agents.data_collector import collect_user_data, validate_job_profile
 from agents.latex_generator import generate_latex_resume
 from agents.compiler import compile_latex_to_pdf
-from agents.crew_crew import resume_crew, skill_analysis_crew, ats_optimization_crew
+from agents.crew_crew import resume_crew, skill_analysis_crew, ats_optimization_crew, cover_letter_crew
 import json
 import os
 from typing import Dict, Any
@@ -54,6 +54,7 @@ def run_resume_builder(user_id: str, job_profile: str, crew_type: str = "full") 
         }
         
         # Select crew based on type
+      
         if crew_type == "full":
             crew = resume_crew
             print("Running full resume builder crew...")
@@ -63,12 +64,15 @@ def run_resume_builder(user_id: str, job_profile: str, crew_type: str = "full") 
         elif crew_type == "ats_optimization":
             crew = ats_optimization_crew
             print("Running ATS optimization crew...")
+        elif crew_type == "cover_letter":
+            crew = cover_letter_crew
+            print("Running cover letter generation crew...")
         else:
             raise ValueError(f"Unknown crew type: {crew_type}")
         
         # Run the crew
         result = crew.kickoff(inputs=inputs)
-        
+        print("------------------------",result,"------------------------")
         # Generate LaTeX and PDF if resume data is available
         if isinstance(result, dict) and 'resume_sections' in result:
             latex_file = generate_latex_resume(result['resume_sections'])
@@ -105,7 +109,7 @@ if __name__ == "__main__":
     
     # Check which API is being used
     if os.getenv("HUGGINGFACE_API_KEY"):
-        print("🎯 Using Hugging Face with DeepSeek-V3 - Excellent for resume building!")
+        print("🎯 Using Hugging Face with model - Excellent for resume building!")
     else:
         print("🆓 Using local Ollama or Mock LLM - Basic functionality")
     
@@ -113,22 +117,28 @@ if __name__ == "__main__":
     result = run_resume_builder(user_id, job_profile, crew_type)
     
     # Output results
+    #print(result)
     if result["status"] == "success":
         print("✅ Resume builder completed successfully!")
-        
+    
         # Handle CrewOutput object properly
         if hasattr(result['result'], '__dict__'):
             # Convert CrewOutput to dict if possible
             try:
-                result_data = result['result'].__dict__
-                print(f"📊 Results: {json.dumps(result_data, indent=2, default=str)}")
+                #result_data = result['result'].__dict__
+
+                #print(f"📊 Results: {json.dumps(result_data, indent=2, default=str)}")
+                print("results")
             except:
-                print(f"📊 Results: {str(result['result'])}")
+                #print(f"📊 Results: {str(result['result'])}")
+                print("results-except")
         else:
             # Try to serialize normally
             try:
-                print(f"📊 Results: {json.dumps(result['result'], indent=2, default=str)}")
+                #print(f"📊 Results: {json.dumps(result['result'], indent=2, default=str)}")
+                print("serializable issue")
             except:
-                print(f"📊 Results: {str(result['result'])}")
+                #print(f"📊 Results: {str(result['result'])}")
+                print("not serializable issue")
     else:
         print(f"❌ Resume builder failed: {result['error']}") 

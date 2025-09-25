@@ -2,7 +2,7 @@ from jinja2 import Environment, FileSystemLoader
 import os
 from typing import Dict, Any, Optional
 
-def generate_latex_resume(data: Dict[str, Any], output_file: str = "resume.tex") -> str:
+def generate_latex_resume(data: Dict[str, Any], output_file: str = "resumeofperson.tex") -> str:
     """
     Generate LaTeX resume from data.
     
@@ -14,7 +14,7 @@ def generate_latex_resume(data: Dict[str, Any], output_file: str = "resume.tex")
         Path to generated LaTeX file
     """
     env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template('resume_template.tex')
+    template = env.get_template('resume.tex')
     latex_code = template.render(**data)
     
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -34,7 +34,7 @@ def generate_latex_cover_letter(data: Dict[str, Any], output_file: str = "cover_
         Path to generated LaTeX file
     """
     env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template('cover_letter_template.tex')
+    template = env.get_template('resume.tex')
     latex_code = template.render(**data)
     
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -54,7 +54,7 @@ def generate_latex_skill_report(data: Dict[str, Any], output_file: str = "skill_
         Path to generated LaTeX file
     """
     env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template('skill_report_template.tex')
+    template = env.get_template('resume.tex')
     latex_code = template.render(**data)
     
     with open(output_file, 'w', encoding='utf-8') as f:
